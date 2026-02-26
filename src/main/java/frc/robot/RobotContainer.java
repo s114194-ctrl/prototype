@@ -20,15 +20,6 @@ import frc.robot.Shooter;
 
 public class RobotContainer {
  
-    // private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 最大角速
-
-    // /* Setting up bindings for necessary control of the swerve drive platform */
-    // private final SwerveRequest.RobotCentric drive = new SwerveRequest.RobotCentric()
-    //         .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% 死區(搖桿靈敏度下降)
-    //         .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors(開放迴圈控制)
-    // private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();//(X行煞車)內八
-    // private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();//方向控制
-
 
     private final CommandXboxController joystick = new CommandXboxController(0);
    // private final CommandXboxController joystick2 = new CommandXboxController(1);
@@ -37,9 +28,10 @@ public class RobotContainer {
     //private final NewShooter shooter = new NewShooter();
 
     private final Indexer_Neo indexer_Neo = new Indexer_Neo();
-    private final Spindexer_Neo spindexer_Neo = new Spindexer_Neo();
-    // private final Shootin shootin = new Shootin(shooter, indexer_Neo);
-    // private final Shootout shootout = new Shootout(shooter, indexer_Neo);
+    
+    private final Spindexer_Neo spindexer = new Spindexer_Neo();
+    //private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
+
     
 
     private SendableChooser<Command> autoChooser;
@@ -52,14 +44,12 @@ public class RobotContainer {
     private void configureBindings() {
             joystick.x().whileTrue(new InstantCommand(shooter::Shooter_Out))
             .onFalse(new InstantCommand(shooter::stopFlyWheels));
-            
-
 
             joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))
             .onFalse((new InstantCommand(indexer_Neo::stop)));
 
-            joystick.a().whileTrue((new InstantCommand(spindexer_Neo::run)))
-            .onFalse((new InstantCommand(spindexer_Neo::stop)));
+            joystick.a().whileTrue((new InstantCommand(spindexer::run)))
+            .onFalse((new InstantCommand(spindexer::stop)));
 
             //     joystick2.a().whileTrue(deploy);
         
