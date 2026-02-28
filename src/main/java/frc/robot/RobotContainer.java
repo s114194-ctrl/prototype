@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 
 //import com.pathplanner.lib.path.PathPlannerPath;
-import frc.robot.Shooter;
+import frc.robot.*;
 // import frc.robot.Shootin;
 // import frc.robot.Shootout;
 
@@ -24,13 +24,15 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
    // private final CommandXboxController joystick2 = new CommandXboxController(1);
 
+    //private final NewShooter shooter = new NewShooter();
+
     private final Shooter shooter = new Shooter();
     //private final NewShooter shooter = new NewShooter();
 
     private final Indexer_Neo indexer_Neo = new Indexer_Neo();
     
-    private final Spindexer_Neo spindexer = new Spindexer_Neo();
-    //private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
+    //private final Spindexer_Neo spindexer = new Spindexer_Neo();
+    private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
 
     
 
@@ -42,7 +44,7 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-            joystick.x().whileTrue(new InstantCommand(shooter::Shooter_Out))
+            joystick.x().whileTrue(new InstantCommand(shooter::out))
             .onFalse(new InstantCommand(shooter::stopFlyWheels));
 
             joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))

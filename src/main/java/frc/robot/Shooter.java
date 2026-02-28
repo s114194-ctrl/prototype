@@ -108,7 +108,6 @@ public class Shooter extends SubsystemBase {
   bigFlyWheelConfigurator.apply(BFW_Out_PIDConfig);
 
 
-
   bigFlyWheel.setPosition(0);
   smallFlyWheel.setPosition(0);
 
@@ -118,7 +117,7 @@ public class Shooter extends SubsystemBase {
 
 
 
-  public void Shooter_Out() {
+  public void out() {
     System.out.println("88888888888");
      bigFlyWheel.setControl(new MotionMagicVelocityVoltage(ShooterConstants.BigFlyWheel).withSlot(0));
      

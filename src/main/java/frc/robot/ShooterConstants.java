@@ -8,10 +8,10 @@ import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 /** Add your docs here. */
 public class ShooterConstants {
 
-    public static final CANBus Can = new CANBus("888");
+    public static final CANBus Can = new CANBus("1");
     public static final int BigFlyWheel_ID = 1;
     public static final int SmallFlyWheel_ID = 2;
-    public static final int angleMotor_ID = 4;
+    public static final int angleMotor_ID = 8;
 
     public static final boolean BigFlyWheel_Inverted = false;
     public static final boolean SmallFlyWheel_Inverted = false;
