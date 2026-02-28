@@ -24,4 +24,5 @@ public class Spindexer_Kraken extends SubsystemBase {
   public void stop (){
     spindexerKraken.stopMotor();
   }
+
 }

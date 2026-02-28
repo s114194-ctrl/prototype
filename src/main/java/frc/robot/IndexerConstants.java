@@ -32,7 +32,7 @@ public class IndexerConstants {
 
     public static class  Indexer_Neo {
         public static final int Indexer_ID = 1;
-        public static double RPM = 115;
+        public static double RPM = 140;
 
       
         public static final double Run_P = 0.1;

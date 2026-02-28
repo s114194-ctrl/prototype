@@ -19,14 +19,14 @@ public class SpindexerConstants  {
 
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 10;
-    public static double run = 80;//rps
+    public static double run = 60;//rps
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0.5)
+        .withSlot0(new Slot0Configs() .withKP(0.2).withKI(0).withKD(0)
         .withKS(0.1).withKV(0.12).withKA(0).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
-        .withInverted(InvertedValue.Clockwise_Positive))
-        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(1000)
-        .withMotionMagicJerk(1000));
+        // .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Brake)
+        // .withInverted(InvertedValue.Clockwise_Positive))
+        .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(1600).withMotionMagicCruiseVelocity(400)
+        .withMotionMagicJerk(5));
 
   }
   public static final class  Spindexer_Neo {

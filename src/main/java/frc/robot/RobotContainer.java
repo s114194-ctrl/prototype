@@ -26,8 +26,8 @@ public class RobotContainer {
 
     //private final NewShooter shooter = new NewShooter();
 
-    private final Shooter shooter = new Shooter();
-    //private final NewShooter shooter = new NewShooter();
+    //private final Shooter shooter = new Shooter();
+    private final NewShooter shooter = new NewShooter();
 
     private final Indexer_Neo indexer_Neo = new Indexer_Neo();
     
@@ -52,6 +52,9 @@ public class RobotContainer {
 
             joystick.a().whileTrue((new InstantCommand(spindexer::run)))
             .onFalse((new InstantCommand(spindexer::stop)));
+
+            // joystick.leftBumper().whileTrue(shooter::angleup(joystick.getLeftY()*0.2));
+
 
             //     joystick2.a().whileTrue(deploy);
         
