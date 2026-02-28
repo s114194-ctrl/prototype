@@ -53,7 +53,7 @@ public class RobotContainer {
             joystick.a().whileTrue((new InstantCommand(spindexer::run)))
             .onFalse((new InstantCommand(spindexer::stop)));
 
-            // joystick.leftBumper().whileTrue(shooter::angleup(joystick.getLeftY()*0.2));
+            //joystick.leftBumper().whileTrue(NewShooter::angleup(joystick.getLeftY()*0.2));
 
 
             //     joystick2.a().whileTrue(deploy);

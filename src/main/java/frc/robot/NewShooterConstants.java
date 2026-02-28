@@ -20,7 +20,7 @@ public class NewShooterConstants {
 
         public static final int bigFlyWheel_ID = 1;
         public static final boolean bigFlyWheel_Inverted = false;
-        public static double bigFlyWheel = 80;//rps
+        public static double bigFlyWheel = 60;//rps
 
         public static final TalonFXConfiguration bigflywheelConfiguration = new TalonFXConfiguration()
         .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(160))
