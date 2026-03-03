@@ -24,12 +24,12 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
    // private final CommandXboxController joystick2 = new CommandXboxController(1);
 
-    //private final NewShooter shooter = new NewShooter();
 
     //private final Shooter shooter = new Shooter();
-    private final NewShooter shooter = new NewShooter();
+    // private final NewShooter shooter = new NewShooter();
+    private final AngleShooter shooter = new AngleShooter();
 
-    private final Indexer_Neo indexer_Neo = new Indexer_Neo();
+    //private final Indexer_Neo indexer_Neo = new Indexer_Neo();
     
     //private final Spindexer_Neo spindexer = new Spindexer_Neo();
     private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
@@ -47,13 +47,17 @@ public class RobotContainer {
             joystick.x().whileTrue(new InstantCommand(shooter::out))
             .onFalse(new InstantCommand(shooter::stopFlyWheels));
 
-            joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))
-            .onFalse((new InstantCommand(indexer_Neo::stop)));
+            // joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))
+            // .onFalse((new InstantCommand(indexer_Neo::stop)));
 
             joystick.a().whileTrue((new InstantCommand(spindexer::run)))
             .onFalse((new InstantCommand(spindexer::stop)));
+            //joystick.b().whileTrue(new InstantCommand(shooter::angleout)) .onFalse((new InstantCommand(shooter::anglein)));
 
-            //joystick.leftBumper().whileTrue(NewShooter::angleup(joystick.getLeftY()*0.2));
+            
+
+            joystick.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand((shooter::anglestop)));
+            joystick.rightBumper().whileTrue(new InstantCommand(shooter::angleout)).onFalse(new InstantCommand((shooter::anglein)));
 
 
             //     joystick2.a().whileTrue(deploy);

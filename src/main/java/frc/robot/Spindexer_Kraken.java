@@ -19,7 +19,7 @@ public class Spindexer_Kraken extends SubsystemBase {
   }
 
   public void run(){
-    spindexerKraken.setControl(new MotionMagicVelocityVoltage(SpindexerConstants.Spindexer_Karken.run).withSlot(0));
+    spindexerKraken.setControl(new VelocityVoltage(SpindexerConstants.Spindexer_Karken.run).withSlot(0));
   }
   public void stop (){
     spindexerKraken.stopMotor();
