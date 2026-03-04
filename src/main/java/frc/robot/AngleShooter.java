@@ -5,22 +5,18 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
+import com.revrobotics.spark.config.SoftLimitConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.FeedbackSensor;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkClosedLoopController;
-
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 
@@ -28,7 +24,6 @@ import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 
@@ -43,27 +38,30 @@ public class AngleShooter extends SubsystemBase {
   private final SparkMaxConfig angleConfig = new SparkMaxConfig();
   private final SparkClosedLoopController anglectrl = angle.getClosedLoopController();
 
+
   public AngleShooter() {
+    angle.getAbsoluteEncoder();
     angleConfig.closedLoop
-        .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+        .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
         .pid(NewShooterConstants.Angle.Run_P,
              NewShooterConstants.Angle.Run_I, 
              NewShooterConstants.Angle.Run_D, 
              ClosedLoopSlot.kSlot0)
-        .maxMotion.allowedProfileError(0.05, ClosedLoopSlot.kSlot0);
+        .maxMotion.allowedProfileError(1, ClosedLoopSlot.kSlot0);
 
     angleConfig.closedLoop.feedForward
         .kV(NewShooterConstants.Angle.Run_F, ClosedLoopSlot.kSlot0);
 
     
-    angleConfig.closedLoop.maxMotion.maxAcceleration(NewShooterConstants.Angle.maxAcceleration)
-                                      .cruiseVelocity(NewShooterConstants.Angle.cruiseVelocity)
-                                      .allowedProfileError(NewShooterConstants.Angle.allowedProfileError, ClosedLoopSlot.kSlot0);
-    angleConfig.idleMode(IdleMode.kBrake);
-    angleConfig.inverted(true);                              
-
+    angleConfig.closedLoop.maxMotion.maxAcceleration(NewShooterConstants.Angle.maxAcceleration, ClosedLoopSlot.kSlot0)
+                                      .cruiseVelocity(NewShooterConstants.Angle.cruiseVelocity, ClosedLoopSlot.kSlot0);
+                                      
+    angleConfig.inverted(false).apply(new SoftLimitConfig().forwardSoftLimit(3).reverseSoftLimit(0)
+    .forwardSoftLimitEnabled(true).reverseSoftLimitEnabled(true));
+    angleConfig.absoluteEncoder.zeroOffset(0.3316887).inverted(false).setSparkMaxDataPortConfig().positionConversionFactor(1);
+ 
     angle.configure(angleConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    
+
 
 
   bigFlyWheel.setPosition(0);
@@ -109,11 +107,14 @@ public class AngleShooter extends SubsystemBase {
   public void anglestop(){
     angle.stopMotor();
   }
+
   public void angleout(){
-    anglectrl.setSetpoint(10, ControlType.kPosition, ClosedLoopSlot.kSlot0);
+      anglectrl.setSetpoint(3, ControlType.kPosition, ClosedLoopSlot.kSlot0);
+    System.out.println(angle.getAbsoluteEncoder().getPosition());
+  
   }
 
   public void anglein(){
-    anglectrl.setSetpoint(1, ControlType.kPosition);
+       anglectrl.setSetpoint(0, ControlType.kPosition, ClosedLoopSlot.kSlot0);
   }
 }

@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 
@@ -57,7 +58,7 @@ public class RobotContainer {
             
 
             joystick.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand((shooter::anglestop)));
-            joystick.rightBumper().whileTrue(new InstantCommand(shooter::angleout)).onFalse(new InstantCommand((shooter::anglein)));
+            joystick.rightBumper().onTrue(new InstantCommand(shooter::angleout)).onFalse(new InstantCommand((shooter::anglein)));
 
 
             //     joystick2.a().whileTrue(deploy);

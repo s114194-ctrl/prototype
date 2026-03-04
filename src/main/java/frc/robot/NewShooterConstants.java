@@ -39,9 +39,9 @@ public class NewShooterConstants {
         public static double RPM = 20;
 
       
-        public static final double Run_P = 0.05;
+        public static final double Run_P = 0.08;
         public static final double Run_I = 0;
-        public static final double Run_D = 0;
+        public static final double Run_D = 0.02;
         public static final double Run_F = 0;
 
         public static final double Max_Output = 1;//最大輸出
