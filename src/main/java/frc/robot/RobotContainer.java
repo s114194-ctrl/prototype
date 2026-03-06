@@ -3,15 +3,12 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
-
-
-
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-
 
 //import com.pathplanner.lib.path.PathPlannerPath;
 import frc.robot.*;
@@ -28,7 +25,7 @@ public class RobotContainer {
 
     //private final Shooter shooter = new Shooter();
     // private final NewShooter shooter = new NewShooter();
-    private final AngleShooter shooter = new AngleShooter();
+    // private final AngleShooter shooter = new AngleShooter();
 
     //private final Indexer_Neo indexer_Neo = new Indexer_Neo();
     
@@ -45,8 +42,8 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-            joystick.x().whileTrue(new InstantCommand(shooter::out))
-            .onFalse(new InstantCommand(shooter::stopFlyWheels));
+            // joystick.x().whileTrue(new InstantCommand(shooter::out))
+            // .onFalse(new InstantCommand(shooter::stopFlyWheels));
 
             // joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))
             // .onFalse((new InstantCommand(indexer_Neo::stop)));
@@ -57,8 +54,8 @@ public class RobotContainer {
 
             
 
-            joystick.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand((shooter::anglestop)));
-            joystick.rightBumper().onTrue(new InstantCommand(shooter::angleout)).onFalse(new InstantCommand((shooter::anglein)));
+            // joystick.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand((shooter::anglestop)));
+            // joystick.rightBumper().onTrue(new InstantCommand(shooter::angleout)).onFalse(new InstantCommand((shooter::anglein)));
 
 
             //     joystick2.a().whileTrue(deploy);
@@ -85,5 +82,6 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
     }
+
 
 }

@@ -20,11 +20,12 @@ public class SpindexerConstants  {
 
   public static final class Spindexer_Karken {
     public static final int Spindexer_ID = 10;
-    public static double run = 60;//rps
+    public static double run = 65;//rps
+
     public static final TalonFXConfiguration SpindexerConfiguration = new TalonFXConfiguration()
-        .withSlot0(new Slot0Configs() .withKP(0.3).withKI(0.01).withKD(0.01)
-        .withKS(0.404).withKV(0.0875).withKA(0.075).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
-        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(40));
+        .withSlot0(new Slot0Configs() .withKP(2.2).withKI(0.1).withKD(0.5)
+        .withKS(1.5).withKV(0.43).withKA(0.5).withStaticFeedforwardSign(StaticFeedforwardSignValue.UseClosedLoopSign))
+        .withCurrentLimits(new CurrentLimitsConfigs().withStatorCurrentLimit(50));
         // .withMotorOutput(new MotorOutputConfigs().withNeutralMode(NeutralModeValue.Coast))
         // .withInverted(InvertedValue.Clockwise_Positive))
         // .withMotionMagic(new MotionMagicConfigs().withMotionMagicAcceleration(2000).withMotionMagicCruiseVelocity(400)
@@ -34,8 +35,7 @@ public class SpindexerConstants  {
   public static final class  Spindexer_Neo {
     public static final int Spindexer_ID = 12;
     public static double RPM = 110;
-
-      
+    
     public static final double Run_P = 0.1;
     public static final double Run_I = 0;
     public static final double Run_D = 0.001;
@@ -48,9 +48,5 @@ public class SpindexerConstants  {
     public static final double cruiseVelocity = 1000;
     public static final double allowedProfileError = 5;
   }
-
-
- 
-
  
 }
