@@ -44,18 +44,19 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-            joystick.x().whileTrue(new InstantCommand(shooter::out))
-            .onFalse(new InstantCommand(shooter::stopFlyWheels));
+            // joystick.x().whileTrue(new InstantCommand(shooter::out))
+            // .onFalse(new InstantCommand(shooter::stopFlyWheels));
 
-            joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))
-            .onFalse((new InstantCommand(indexer_Neo::stop)));
+            // joystick.y().whileTrue((new InstantCommand(indexer_Neo::run)))
+            // .onFalse((new InstantCommand(indexer_Neo::stop)));
 
             joystick.a().whileTrue((new InstantCommand(spindexer::run)))
             .onFalse((new InstantCommand(spindexer::stop)));
 
-            //joystick.leftBumper().whileTrue(NewShooter::angleup(joystick.getLeftY()*0.2));
+            joystick.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
+            joystick.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
 
-
+            //joystick.a().whileTrue(new InstantCommand(shooter::out));
             //     joystick2.a().whileTrue(deploy);
         
             //     // intake按鍵

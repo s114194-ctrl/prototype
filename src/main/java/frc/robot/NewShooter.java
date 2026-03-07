@@ -2,7 +2,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.geometry.Pose2d;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.util.HashMap;
@@ -77,12 +77,31 @@ public class NewShooter extends SubsystemBase {
     bigFlyWheel.stopMotor();
   }
 
-  public void angleup(double x){
-    angle.set(x);
+  public void angleup(){
+    angle.set(0.1);
   }
 
-  // public void angledown(double x){
-  //   angle.set(x);
-  // }
+  public void angledown(){
+    angle.set(-0.1);
+  }
+  public void anglestop(){
+    angle.stopMotor();
+  }
 
+  @Override
+  public void periodic() {
+      super.periodic();
+      SmartDashboard.putNumber("FW Current Velocity", bigFlyWheel.getVelocity().getValueAsDouble());
+      SmartDashboard.putNumber("FW velovity error", bigFlyWheel.getClosedLoopError().getValueAsDouble());
+  }
+
+  public boolean isVelocityTarget() {
+    if(Math.abs(bigFlyWheel.getClosedLoopError().getValueAsDouble()) < 5){
+      return true;
+    }
+    else {
+      return false;
+    }
+    
+  }
 }
