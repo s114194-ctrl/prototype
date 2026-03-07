@@ -4,10 +4,8 @@
 
 package frc.robot;
 
-import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -19,7 +17,7 @@ public class Spindexer_Kraken extends SubsystemBase {
   }
 
   public void run(){
-    spindexerKraken.setControl(new MotionMagicVelocityVoltage(SpindexerConstants.Spindexer_Karken.run).withSlot(0));
+    spindexerKraken.setControl(new VelocityVoltage(SpindexerConstants.Spindexer_Karken.run).withSlot(0));
   }
   public void stop (){
     spindexerKraken.stopMotor();

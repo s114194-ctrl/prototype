@@ -3,14 +3,12 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
-
-
-
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-
 
 //import com.pathplanner.lib.path.PathPlannerPath;
 import frc.robot.*;
@@ -24,12 +22,12 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
    // private final CommandXboxController joystick2 = new CommandXboxController(1);
 
-    //private final NewShooter shooter = new NewShooter();
 
     //private final Shooter shooter = new Shooter();
-    private final NewShooter shooter = new NewShooter();
+    // private final NewShooter shooter = new NewShooter();
+    // private final AngleShooter shooter = new AngleShooter();
 
-    private final Indexer_Neo indexer_Neo = new Indexer_Neo();
+    //private final Indexer_Neo indexer_Neo = new Indexer_Neo();
     
     //private final Spindexer_Neo spindexer = new Spindexer_Neo();
     private final Spindexer_Kraken spindexer = new Spindexer_Kraken();
@@ -53,8 +51,7 @@ public class RobotContainer {
             joystick.a().whileTrue((new InstantCommand(spindexer::run)))
             .onFalse((new InstantCommand(spindexer::stop)));
 
-            joystick.leftBumper().whileTrue(new InstantCommand(shooter::angleup)).onFalse(new InstantCommand(shooter::anglestop));
-            joystick.rightBumper().whileTrue(new InstantCommand(shooter::angledown)).onFalse(new InstantCommand(shooter::anglestop));
+            //joystick.leftBumper().whileTrue(NewShooter::angleup(joystick.getLeftY()*0.2));
 
             //joystick.a().whileTrue(new InstantCommand(shooter::out));
             //     joystick2.a().whileTrue(deploy);
@@ -81,5 +78,6 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         return autoChooser.getSelected();
     }
+
 
 }
